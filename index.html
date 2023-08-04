@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cubo conect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 80%;
+            margin: 0 auto;
+            height: auto;
+        }
+        .app {
+            width: 100%;
+            padding: 20px;
+        }
+        h3 {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            text-align: center;
+            margin: 50px 0;
+            font-size: 28px;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+        button {
+            display: block;
+            height: auto;
+            width: 200px;
+            height: 40px;
+            margin: 30px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        let state = { cubeState: 'bbbbbbbbboooooooooyyyyyyyyygggggggggrrrrrrrrrwwwwwwwww' };
+        this.device = null;
+    </script>
+    <div class="app">
+        <h3>Connection Mi Smart Magic Cube</h3>
+        <button onclick="parear()">Parear</button>
+    </div>
+    <script>
+        function parear() {
+            console.log("entrou!");
+            const SERVICE_UUID = '0000aadb-0000-1000-8000-00805f9b34fb';
+            const CHARACTERISTIC_UUID = '0000aadc-0000-1000-8000-00805f9b34fb';
+
+            const connectToBluetoothDevice = () => {
+                return navigator.bluetooth
+                    .requestDevice({
+                        acceptAllDevices: true,
+                        optionalServices: [SERVICE_UUID]
+                    })
+                    .then(device =>
+                        device.gatt.connect().then(server => {
+                            window.mdevice = device;
+                            window.mserver = server;
+                            alert("Conectado!")
+							window.open("https://cstimer.net/", "_blank");
+                            return { device, server };
+                        })
+                    );
+            };
+
+            connectToBluetoothDevice()
+        }
+    </script>
+</body>
+
+</html>
