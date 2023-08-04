@@ -65,8 +65,8 @@
                         device.gatt.connect().then(server => {
                             window.mdevice = device;
                             window.mserver = server;
-                            alert("Conectado!")
-							window.open("https://cstimer.net/", "_blank");
+                            alert("Successfully connected!");
+			    window.open("https://cstimer.net/", "_blank");
                             return { device, server };
                         })
                     );
